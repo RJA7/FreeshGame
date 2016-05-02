@@ -1,0 +1,27 @@
+{
+  "name": "RestTmp",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./server.js"
+  },
+  "dependencies": {
+    "body-parser": "~1.13.2",
+    "connect-mongo": "latest",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "express": "~4.13.1",
+    "express-session": "latest",
+    "mongodb": "latest",
+    "mongoose": "^4.4.13",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0",
+    "socket.io": "latest",
+    "trim": "0.0.1",
+    "validator": "latest",
+    "winston": "latest",
+    "xml-escape": "^1.1.0",
+    "sha1": "latest",
+    "rest-router": "latest"
+  }
+}
