@@ -1,12 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var AuthHandler = require('../handlers/authHandler');
 
 module.exports = function () {
-    router.use(function (req, res, next) {
-        req.user = req.session.user;
+    var authHandler = new AuthHandler();
 
-        return next();
-    });
+    router.post('/login', authHandler.login);
+    router.post('/register', authHandler.register);
+    router.post('/forgot', authHandler.forgot);
+    router.post('/restore', authHandler.restore);
     
     return router;
 };

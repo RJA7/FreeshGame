@@ -1,10 +1,12 @@
-var auth = require('./auth')();
-var main = require('./main')();
 var restRouter = require('rest-router');
+var init = require('./init')();
+var main = require('./main')();
+var auth = require('./auth')();
 
 module.exports = function (app) {
-    app.use(auth);
+    app.use(init);
     app.use('/', main);
+    app.use('/auth', auth);
     app.use('/users', restRouter('user'));
 
     app.use(notFound);

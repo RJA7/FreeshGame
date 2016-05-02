@@ -22,6 +22,8 @@
     "winston": "latest",
     "xml-escape": "^1.1.0",
     "sha1": "latest",
-    "rest-router": "latest"
+    "rest-router": "latest",
+    "random-strings": "latest",
+    "nodemailer": "latest"
   }
 }
