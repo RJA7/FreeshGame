@@ -45,7 +45,7 @@ module.exports = function () {
     this.forgot = function (req, res, next) {
         var body = req.body || {};
         var session = req.session;
-        var aggregateObj = [{$math: {email: body.email}}];
+        var aggregateObj = [{$match: {email: body.email}}];
         var user;
         var code;
 
@@ -85,14 +85,32 @@ module.exports = function () {
                         return next(err);
                     }
 
+                    mailer.send(session.email, 'Restoring Password', 'New Password: ' + newPassword);
                     delete session.code;
                     delete session.email;
-                    mailer.send(user.email, 'Restoring Password', 'New Password: ' + newPassword);
 
                     return res.status(200).send({message: 'New password sent to your email.'});
                 });
         } else {
             return res.status(400).send({message: 'Wrong code.'});
         }
+    };
+
+    this.getUser = function (req, res, next) {
+        var user  = req.session.user;
+        var err;
+
+        if (!user) {
+            err = {status: 401, message: 'Unauthorized user'};
+            return next(err);
+        }
+
+        return res.status(200).send(user);
+    };
+
+    this.logout = function (req, res, next) {
+        req.session.user = null;
+
+        return res.status(200).send({message: 'Logged Out'});
     };
 };

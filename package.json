@@ -24,6 +24,7 @@
     "sha1": "latest",
     "rest-router": "latest",
     "random-strings": "latest",
-    "nodemailer": "latest"
+    "nodemailer": "latest",
+    "underscore": "latest"
   }
 }

@@ -22,8 +22,11 @@ function notFound(req, res, next) {
 }
 
 function errorHandler(err, req, res, next) {
+    if (err.code == 11000) {
+        err = {status: 400, message: 'This user already registered.'};
+    }
     var status = err.status || 500;
-
     console.log(err);
+
     return res.status(status).send(err);
 }

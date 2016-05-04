@@ -9,6 +9,8 @@ module.exports = function () {
     router.post('/register', authHandler.register);
     router.post('/forgot', authHandler.forgot);
     router.post('/restore', authHandler.restore);
+    router.get('/user', authHandler.getUser);
+    router.get('/logout', authHandler.logout);
     
     return router;
 };

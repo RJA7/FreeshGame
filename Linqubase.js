@@ -21,6 +21,7 @@ function fill() {
         user.email = 'email' + i + '@i.ua';
         user.password = i + 'password';
         user.freeshki = i + 100;
+        user.role = 100;
         user.save();
     }
     console.log('Users created');

@@ -29,7 +29,11 @@ var UserSchema = Schema({
     },
     freeshki: {
         type: Number,
-        required: true
+        default: 0
+    },
+    role: {
+        type: Number,
+        default: 50         //user = 50, admin = 100
     }
 });
 
@@ -39,16 +43,7 @@ UserSchema.options = {
     defaultSecureIn: 0,
     defaultSecureOut: 0,
     filterField: 'name',
-    searchFields: 'name',
-    init: function (req) {
-        var user = req.user || {};
-        var params = req.params;
-        var id = params.id;
-
-        params.id = id === 1 ? user._id : id;
-        params.id = user.role < 100 ? user._id : id;
-    },
-    validate: function (model, isNew) {}
+    searchFields: 'name'
 };
 module.exports = mongoose.model('user', UserSchema);
 

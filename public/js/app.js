@@ -9,28 +9,32 @@ define([
     var initialize = function () {
         var url = window.location.hash;
 
-        APP.chanel = _.extend({}, Backbone.Events);
         new Router();
-
+        APP.chanel = _.extend({}, Backbone.Events);
         Backbone.history.start({silent: true});
 
         require([
-            'views/main',
+            'views/init/header',
+            'views/init/footer',
             'models/users'
-        ], function (MainView, UserModel) {
-            var user = new UserModel({_id: 1}, {urlRoot: 'users'});
+        ], function (HeaderView, FooterView, UserModel) {
+            var user = new UserModel();
+            user.urlRoot = '/auth/user';
             user.fetch({
-                success: function () {
-                    APP.user = user.has('name') ? user : null;
+                success: function (user) {
+                    APP.user = user;
                     start();
                 },
-                error: function () {
+                error: function (user, resp) {
+                    console.log(resp.responseJSON);
+                    url = 'auth/login';
                     start();
                 }
             });
 
-            function start () {
-                new MainView();
+            function start() {
+                new HeaderView();
+                new FooterView();
                 Backbone.history.fragment = '';
                 Backbone.history.navigate(url, {trigger: true});
             }

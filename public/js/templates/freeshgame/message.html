@@ -1,0 +1,17 @@
+<%
+var user = user || {};
+var message;
+var date = new Date();
+var hours = date.getHours();
+var minutes = date.getMinutes();
+hours = hours < 10 ? '0' + hours : hours;
+minutes = minutes < 10 ? '0' + minutes : minutes;
+date = hours + ':' + minutes;
+%>
+<li class="clearfix">
+    <div class="chat-body clearfix">
+        <span class="time"><%= date %></span>
+        <strong style="color: #8c8c8c" class="primary-font"><%- user.name %></strong>:
+        <span style="word-wrap: break-word"><%- message %></span>
+    </div>
+</li>

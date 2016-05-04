@@ -7,6 +7,7 @@ var http = require('http');
 var port = process.env.PORT || '80';
 
 var server = http.createServer(app).listen(port);
+require('./socket')(server);
 
 server.on('error', onError);
 server.on('listening', onListening);
