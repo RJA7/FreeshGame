@@ -2,7 +2,7 @@ var _ = require('underscore');
 var httpSession = require('./libs/httpSession')();
 var io = require('socket.io');
 var users = [];
-var freesh = require('./freesh');
+var maf = require('./maf');
 
 module.exports = function (server) {
     var sockets = io(server);
@@ -24,7 +24,7 @@ module.exports = function (server) {
         });
 
         socket.on('message', function (message) {
-            freesh(message, socket, sockets);
+            maf(message, socket, sockets);
             sockets.emit('message', {message: message, user: user});
         });
 
