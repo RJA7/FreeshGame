@@ -41,9 +41,9 @@ define([
             });
         },
 
-        send: function (e) {
+        send: function () {
             var message = $('#message');
-            if (!message) return;
+            if (!message.val()) return;
             APP.socket.emit('message', message.val());
             message.val('');
         },

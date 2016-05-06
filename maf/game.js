@@ -1,6 +1,6 @@
 var model = require('./model');
 var emily = {name: 'Emily'};
-var TIME = 180000;
+var TIME = 30000;
 
 module.exports = function (sockets) {
     var players = model.players;

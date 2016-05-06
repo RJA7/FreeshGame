@@ -20,7 +20,7 @@ module.exports = function () {
         }
     };
 
-    this.reg = function (message, socket, sockets) {
+    this.reg = function (message, socket) {
         if (!model.isRegistration) return;
 
         if (socket.game && players[socket.game.id] === socket) {
@@ -35,7 +35,7 @@ module.exports = function () {
         socket.emit('message', {message: 'Вы успешно зарегистрированы.', user: emily});
     };
 
-    this.golos = function (message, socket, sockets) {
+    this.golos = function (message, socket) {
         var num = parseMessage(message);
         var all = true;
         var i;
@@ -50,7 +50,10 @@ module.exports = function () {
         while (i--) {
             players[i] && !players[i].game.golos ? all = false : '';
         }
-        all ? model.next() : '';
+        if (all) {
+            clearTimeout(model.timeoutId);
+            model.next();
+        }
     };
 
     this.kill = function (message, socket) {
