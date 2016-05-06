@@ -24,12 +24,12 @@ module.exports = function (server) {
         });
 
         socket.on('message', function (message) {
+            message.charAt(0) !== '!' ? sockets.emit('message', {message: message, user: user}) : '';
             maf(message, socket, sockets);
-            sockets.emit('message', {message: message, user: user});
         });
 
         socket.on('users', function () {
-            socket.emit('users', users);
+            sockets.emit('users', users);
         });
     });
 };

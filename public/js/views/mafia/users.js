@@ -1,7 +1,7 @@
 define([
     'underscore',
     'backbone',
-    'text!templates/freeshgame/users.html'
+    'text!templates/mafia/users.html'
 ], function (_, Backbone, template) {
     return Backbone.View.extend({
         tpl: _.template(template),

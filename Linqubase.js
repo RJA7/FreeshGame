@@ -18,7 +18,7 @@ function fill() {
     for (var i = 0; i < 100; i++) {
         user = new User();
         user.name = 'name' + i;
-        user.email = 'email' + i + '@i.ua';
+        user.email = 'emails' + i + '@i.ua';
         user.password = i + 'password';
         user.freeshki = i + 100;
         user.role = 100;

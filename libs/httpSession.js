@@ -14,7 +14,7 @@ module.exports = function () {
         },
         store: new MongoStore({
             mongooseConnection: mongoose.connection,
-            touchAfter: 24 * 3600
+            touchAfter: 24 * 3600 * 30
         })
     });
 };

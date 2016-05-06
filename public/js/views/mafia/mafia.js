@@ -2,7 +2,7 @@ define([
     'underscore',
     'backbone',
     'socket',
-    'text!templates/freeshgame/freeshgame.html'
+    'text!templates/mafia/mafia.html'
 ], function (_, Backbone, socket, Template) {
     return Backbone.View.extend({
         el: $('#container'),
@@ -10,7 +10,8 @@ define([
         tpl: _.template(Template),
 
         events: {
-            'click #send': 'send'
+            'click #send': 'send',
+            'keydown #message': 'keyAction'
         },
 
         initialize: function () {
@@ -28,13 +29,13 @@ define([
         },
 
         users: function (users) {
-            require(['views/freeshgame/users'], function (View) {
+            require(['views/mafia/users'], function (View) {
                 $('#users').html(new View({collection: users}).$el);
             });
         },
 
         message: function (data) {
-            require(['views/freeshgame/message'], function (View) {
+            require(['views/mafia/message'], function (View) {
                 $('#messages').append(new View({model: data}).$el);
                 $('#scroll').scrollTop(Number.MAX_VALUE);
             });
@@ -45,6 +46,13 @@ define([
             if (!message) return;
             APP.socket.emit('message', message.val());
             message.val('');
+        },
+
+        keyAction: function (e) {
+            var code = e.keyCode || e.which;
+            if (code == 13) {
+                this.send();
+            }
         }
     });
 });

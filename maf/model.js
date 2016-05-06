@@ -7,5 +7,8 @@ module.exports = {
     isCityTime: false,
     isMafiaTime: false,
     isWhoreTime: false,
-    isWatTime: false
+    isWatTime: false,
+
+    timeoutId: null,
+    next: null
 };

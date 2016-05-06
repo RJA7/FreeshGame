@@ -8,7 +8,7 @@ define([
         routes: {
             'auth/:id': 'auth',
             'get/:content/:id': 'item',
-            'freeshgame': 'freeshgame',
+            'mafia': 'mafia',
             '*all': 'all'
         },
 
@@ -46,13 +46,13 @@ define([
             });
         },
 
-        freeshgame: function () {
+        mafia: function () {
             var self = this;
             if (!APP.user) {
                 return Backbone.history.navigate('auth/login', {trigger: true, replace: true});
             }
 
-            require(['views/freeshgame/freeshgame'], function (View) {
+            require(['views/mafia/mafia'], function (View) {
                 self.view ? self.view.undelegateEvents() : '';
                 self.view = new View();
             });
